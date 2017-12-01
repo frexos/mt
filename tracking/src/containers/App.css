@@ -1,0 +1,70 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 3rem;
+}
+
+.App-header {
+  background-color: #222;
+  padding: 1rem;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+.vessel__position {
+  background-color: lightgreen;
+  border: 1px solid green;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 0.5rem;
+  margin: -0.25rem 0 0 -0.25rem;
+  width: 0.5rem;
+}
+
+.vessel__position.vessel__position--last {
+  background-color: turquoise;
+  border: 2px solid green;
+}
+
+.vessel__position:hover .vessel__tooltip {
+  display: block;
+  position: relative;
+}
+
+.vessel__tooltip {
+  background-color: white;
+  border: 1px solid green;
+  border-radius: 0.25rem;
+  display: none;
+  left: -6rem;
+  padding: 0.5rem;
+  position: absolute;
+  top: -7rem;
+  text-align: left;
+  width: 12rem;
+  z-index: 2;
+}
+
+.vessel__detail {
+  display: block;
+  font-size: 0.875rem;
+}
