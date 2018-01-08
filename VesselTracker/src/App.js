@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchForm from './Components/SearchForm';
 import { apiCall } from './Components/apiCall';
+import Modal from './Components/Modal';
 import './App.css';
 
 class App extends React.Component {
@@ -17,10 +18,16 @@ class App extends React.Component {
 		});
 	}
 
+	closeModal = () => {
+		this.setState({error: false, errorMessage:''});
+	}
+
 	render() {
-		console.log(this.state)
+		let modal;
+		this.state.error === true ? modal = <Modal click={this.closeModal} errorMessage={this.state.errorMessage}/> : void(0);
 		return (
 			<div className="App">
+				{modal}
 				<SearchForm selectedOptions={this.requestInformation}/>
 			</div>
 		);

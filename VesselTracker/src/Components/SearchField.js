@@ -5,7 +5,7 @@ class SearchField extends React.Component {
 		return (
 			<div className='searchField'>
 				<label>{this.props.title}</label>
-				<input name={this.props.title} onChange={this.props.onchange} value={this.props.value}/>
+				<input name={this.props.title} onChange={this.props.onchange} value={this.props.value.trim()}/>
 			</div>
 		)
 	}

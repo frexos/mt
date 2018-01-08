@@ -92,3 +92,37 @@ button:focus {
 	border: 0px;
 	color: rgba(19, 35, 47, 0.9);
 }
+
+/***** Modal *****/
+.modal {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	background-color: rgba(0,0,0, 0.5);
+	color: rgba(19, 35, 47, 0.9);
+}
+
+.modalTitle {
+	padding: 2%;
+	font-size: 20px;
+	background-color: red;
+	text-align: center;
+	color: #fff;
+}
+
+.errorMessage {
+	margin-top: 20%;
+	background-color: white;
+	color: #1ab188;
+	font-weight: bolder;
+}
+
+.close {
+	float: right;
+}
