@@ -19,8 +19,7 @@ class SearchForm extends React.Component {
 		this.setState({[event.target.name]: event.target.value});
 	}
 
-	// A basic form validation
-	// If an empty field exists, function returns field name
+	// A basic form validation, if an empty field exists function returns field name
 	validateForm = () => {
 		for(let value in this.state) {
 			if(!this.state[value]) {
