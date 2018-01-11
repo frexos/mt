@@ -17,16 +17,22 @@ const statusMessage = [
 	'undefined = default (also used by AIS-SART, MOB-AIS and EPIRB-AIS under test)'
 ];
 
-const Status = (statusNo) => {
+const statusToString = (statusNo) => {
 	return statusMessage[statusNo];
 }
 
-const Time = (time) => {
+const timeFormat = (time) => {
 	return new Date(time).toString();
 }
 
-const Speed = (speed) => {
+const speedMeasureUnit = (speed) => {
 	return speed + ' (in knots x10)';
 }
 
-export {Status, Time, Speed};
+const headingToInteger = (heading) => {
+	console.log(heading)
+	console.log(Math.trunc(heading))
+	return Math.trunc(heading);
+}
+
+export { statusToString, timeFormat, speedMeasureUnit, headingToInteger };
