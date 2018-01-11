@@ -1,15 +1,17 @@
 import React from 'react';
 import { Marker } from 'react-leaflet';
 import MyPopup from './MyPopup';
-import { CircleIcon } from './MarkerIcon';
+import { CircleIcon, ArrowIcon } from './MarkerIcon';
+import RotatedMarker from 'react-leaflet-rotatedmarker';
+import { headingToInteger } from './Calculations.js';
 
 const MyMarker = (props) => {
 	let markers = props.data.map((x, i) => {
 		return (
-			<Marker key={i} position={props.data[i].coords} icon={CircleIcon} >
+			<RotatedMarker key={i} rotationAngle={headingToInteger(props.data[i].heading)} rotationOrigin={'center'} position={props.data[i].coords} icon={ ArrowIcon } >
 				<MyPopup popupInfo={props.data[i]}>
 				</MyPopup>
-			</Marker>
+			</RotatedMarker>
 		)
 	});
 	return markers;
