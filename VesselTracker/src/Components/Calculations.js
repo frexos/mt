@@ -25,4 +25,8 @@ const Time = (time) => {
 	return new Date(time).toString();
 }
 
-export {Status, Time};
+const Speed = (speed) => {
+	return speed + ' (in knots x10)';
+}
+
+export {Status, Time, Speed};
