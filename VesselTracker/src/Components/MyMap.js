@@ -3,7 +3,6 @@ import MyMarker from './MyMarker';
 import { Map, TileLayer } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import Control from './Control.js';
-import Polyline from './Polyline.js'
 import L from 'leaflet';
 // solves issues with leaflet.css import
 import 'leaflet/dist/leaflet.css';

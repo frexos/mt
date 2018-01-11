@@ -1,5 +1,4 @@
 import React from 'react';
-import { Marker } from 'react-leaflet';
 import MyPopup from './MyPopup';
 import { CircleIcon, ArrowIcon } from './MarkerIcon';
 import RotatedMarker from 'react-leaflet-rotatedmarker';
