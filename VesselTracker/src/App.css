@@ -189,3 +189,40 @@ button:focus {
 .leaflet-container a.leaflet-popup-close-button {
 	color: #3989FC;
 }
+
+/******* Control *******/
+.buttonBackground {
+	position: absolute;
+	border-radius: 10px;
+  width: 36px;
+  height: 36px;
+	background-color: white;
+	right: 10px;
+	top: 7px;
+	z-index: 1500000;
+	box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+}
+
+.polylineBackground {
+	top: 50px;
+}
+
+.markerIcon, 
+.polylineIcon {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	margin-top: 6px;
+}
+
+.markerIcon {
+	width: 25px;
+	height: 25px;
+}
+
+.polylineIcon {
+	margin-top: 11px;
+	right: 45px;
+	width: 30px;
+	height: 14px;
+}
