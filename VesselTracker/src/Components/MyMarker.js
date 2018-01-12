@@ -6,7 +6,7 @@ import { headingToInteger } from './Calculations.js';
 
 const MyMarker = (props) => {
 	let markerIcon;
-	props.icon === 'arrow' ? markerIcon = CircleIcon : markerIcon = ArrowIcon;
+	props.icon === 'arrow' ? markerIcon = ArrowIcon : markerIcon = CircleIcon;
 	let markers = props.data.map((x, i) => {
 		return (
 			<RotatedMarker key={i} rotationAngle={headingToInteger(props.data[i].heading)} rotationOrigin={'center'} position={props.data[i].coords} icon={ markerIcon } >

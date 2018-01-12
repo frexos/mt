@@ -1,9 +1,8 @@
 import React from 'react';
-import MyMarker from './MyMarker';
 import { Map, TileLayer } from 'react-leaflet';
-import MarkerClusterGroup from 'react-leaflet-markercluster';
 import Control from './Control.js';
 import L from 'leaflet';
+import Clusterer from './Clusterer.js'
 // solves issues with leaflet.css import
 import 'leaflet/dist/leaflet.css';
 
@@ -69,22 +68,14 @@ class MyMap extends React.Component {
 		}
 	}
 
-
-
 	render() {
-		let mapLayer;
-		this.state.isWaypoints ? mapLayer = <MyMarker data={this.props.data} icon={'arrow'}/> 
-													 : mapLayer = <MyMarker data={this.props.data} icon={'circle'}/>;
-													 
 		return (
-			<Map ref={map=>{this.leafletMap = map;}} bounds={this.state.coords} className='map'>
+			<Map ref={map=>{this.leafletMap = map;}} bounds={this.state.coords} className='map' onZoomlevelschange={console.log(32)}>
 				<TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 					attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
 				/>
 				<Control onclick={this.handlePolyline}/>
-				<MarkerClusterGroup>
-					{mapLayer}
-				</MarkerClusterGroup>;
+				<Clusterer type={this.state.isWaypoints} data={this.props.data}/>
 			</Map>
 		)
 	}

@@ -4,8 +4,8 @@ import arrowIcon from '../assets/images/arrow.png';
 
 const ArrowIcon = L.icon({
 	iconUrl: arrowIcon,
-	iconSize: [38.7, 23.25],
-	iconAnchor: [19.35, 11.55]
+	iconSize: [40, 40],
+	iconAnchor: [20, 20]
 });
 
 const CircleIcon = L.icon({
