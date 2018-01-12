@@ -2,6 +2,8 @@ import React from 'react';
 import markerIcon from '../assets/images/marker.png';
 import polylineIcon from '../assets/images/polyline.png';
 
+// a custom component that overrides leaflet default control component 
+// and gives user the capability to select a map with markers or a map with a polyline
 class Control extends React.Component {
 	render() {
 		return (

@@ -1,14 +1,14 @@
 import axios from 'axios';
 
 // A function that calls marine traffic api via axios 
-// *****************************************************************************************************************
-// If response is not valid , function returns an error signal and an additional informative error message to parent
-// Parent (app.js), will then handle the error and present it in a modal
+// ******************************************************************************************************************
+// If response is not valid , function returns an error signal and an additional informative error message to parent.
+// Parent (app.js), will then handle the error and present it inside a modal
 // An error can occur in 3 ways
 // i - data from parent is not an object (a field from search form is missing)
 // ii - user does not complete fields with proper/real data (server error desciption is presented)
 // iii - user has no internet connection or server is under maintainance (a generic desciption is presented) 
-// *****************************************************************************************************************
+// ******************************************************************************************************************
 // If server response is valid organiseVesselInformation function will be called
 
 const apiCall = (data) => {
@@ -18,6 +18,7 @@ const apiCall = (data) => {
 		// url construction based on user choices
 		const url = ' http://services.marinetraffic.com/api/exportvesseltrack/' + data.Key + '/v:2/period:'+ data.Period + '/days:'
 								+ data.Days +'/mmsi:'+ data.Mssi + '/protocol:json';
+
 		return axios.get(url)
 			.then( reponse => {
 				if (reponse.data.errors) {
@@ -33,7 +34,7 @@ const apiCall = (data) => {
 }
 
 // A function that gets a valid server reponse and organises information into an array of objects
-// each object represents information about a specific vessel position
+// Each object represents information about a specific vessel position
 const organiseVesselInformation = (vesselData) => {
 	let organisedInformation = [];
 	for(let value of vesselData) {

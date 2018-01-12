@@ -30,8 +30,6 @@ const speedMeasureUnit = (speed) => {
 }
 
 const headingToInteger = (heading) => {
-	console.log(heading)
-	console.log(Math.trunc(heading))
 	return Math.trunc(heading);
 }
 

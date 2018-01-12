@@ -31,8 +31,8 @@ class App extends React.Component {
 		this.state.data.length ? map = <MyMap data={this.state.data} /> : void(0);
 		return (
 			<div className="App">
-				{modal}
 				<SearchForm selectedOptions={this.requestInformation}/>
+				{modal}
 				{map}
 			</div>
 		);

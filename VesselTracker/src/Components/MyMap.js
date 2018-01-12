@@ -24,7 +24,7 @@ class MyMap extends React.Component {
 		this.setState({polylinePoints: this.polylinePoints()});
 	}
 
-	// get coords from server response
+	// get coords from server response, coords are used to set map bounds
 	getCoords = () => {
 		let coords = [];
 		this.props.data.map((x, i) => {
@@ -32,7 +32,6 @@ class MyMap extends React.Component {
 		});
 		return coords;
 	}
-
 
 	// creates polyline points based on coords
 	polylinePoints = () => {
@@ -50,7 +49,7 @@ class MyMap extends React.Component {
 		this.state.map.addLayer(polyline); 
 	}
 
-	// removes a polyline
+	// a non elegant way to remove a polyline, but seems to be the only one 
 	removePolyline = () => {
 		for (let i in this.leafletMap.leafletElement._layers) {
 			if(this.leafletMap.leafletElement._layers[i].name === 'polyline') {
@@ -59,7 +58,7 @@ class MyMap extends React.Component {
 		}
 	}
 
-	// decides if a polyline or simple waypoints will be rendered
+	// decides if waypoints or marker with polyline will be rendered
 	handlePolyline = (btnClicked) => {
 		if(btnClicked === 'waypoints') {
 			this.addPolyline();
@@ -76,6 +75,7 @@ class MyMap extends React.Component {
 		let mapLayer;
 		this.state.isWaypoints ? mapLayer = <MyMarker data={this.props.data} icon={'arrow'}/> 
 													 : mapLayer = <MyMarker data={this.props.data} icon={'circle'}/>;
+													 
 		return (
 			<Map ref={map=>{this.leafletMap = map;}} bounds={this.state.coords} className='map'>
 				<TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
