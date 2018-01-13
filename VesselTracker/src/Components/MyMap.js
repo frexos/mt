@@ -70,7 +70,7 @@ class MyMap extends React.Component {
 
 	render() {
 		return (
-			<Map ref={map=>{this.leafletMap = map;}} bounds={this.state.coords} className='map' onZoomlevelschange={console.log(32)}>
+			<Map ref={map=>{this.leafletMap = map;}} bounds={this.state.coords} className='map'>
 				<TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 					attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
 				/>
