@@ -1,5 +1,3 @@
-@import url('~react-leaflet-markercluster/dist/styles.min.css'); 
-
 /***** General *****/
 html, body {
 	margin: 0;
@@ -140,7 +138,7 @@ button:focus {
 }
 
 .leaflet-container {
-	height: 500px;
+	height: 600px;
 	width: 95%;
   background-color: #333;
 }

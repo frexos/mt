@@ -14,6 +14,7 @@ class App extends React.Component {
 	}
 
 	requestInformation = (formData) => {
+		this.setState({data: []});
 		apiCall(formData)
 		.then((reponse)=> {
 			reponse.error ? this.setState({error: true, errorMessage: reponse.errorMessage}) : 
@@ -27,8 +28,8 @@ class App extends React.Component {
 
 	render() {
 		let modal, map;
-		this.state.error === true ? modal = <Modal click={this.closeModal} errorMessage={this.state.errorMessage}/> : void(0);
-		this.state.data.length ? map = <MyMap data={this.state.data} /> : void(0);
+		this.state.error === true ? modal = <Modal click={this.closeModal} errorMessage={this.state.errorMessage}/> : null;
+		this.state.data.length ? map = <MyMap data={this.state.data} /> : null;
 		return (
 			<div className="App">
 				<SearchForm selectedOptions={this.requestInformation}/>
