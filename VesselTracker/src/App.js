@@ -28,8 +28,8 @@ class App extends React.Component {
 
 	render() {
 		let modal, map;
-		this.state.error === true ? modal = <Modal click={this.closeModal} errorMessage={this.state.errorMessage}/> : null;
-		this.state.data.length ? map = <MyMap data={this.state.data} /> : null;
+		this.state.error === true ? modal = <Modal click={this.closeModal} errorMessage={this.state.errorMessage}/> : void(0);
+		this.state.data.length ? map = <MyMap data={this.state.data} /> : void(0);
 		return (
 			<div className="App">
 				<SearchForm selectedOptions={this.requestInformation}/>
