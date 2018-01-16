@@ -1,0 +1,239 @@
+/***** General *****/
+html, body {
+	margin: 0;
+	padding: 0;
+	background-color: #c1bdba;
+	text-align: center;
+		/* disable copy highlight*/
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 1em;
+}
+
+input {
+		box-sizing : border-box;
+}
+
+input:focus, 
+button:focus {
+	outline:0;
+}
+
+/***** Form *****/
+.searchForm {
+	height: 160px;
+	width: 80%;
+	background: rgba(19, 35, 47, 0.9);
+	padding: 20px;
+	margin: 20px auto;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+	box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+}
+
+.searchField {
+	float: left;
+	width: 35%;
+	margin-top: 10px;
+}
+
+.searchField label{
+	display: block;
+	color: #fff;
+}
+
+.searchField input{
+	background: transparent;
+	color: #1ab188;
+	width: 90%;
+	padding: 10px;
+	border: 0;
+	border-bottom: 1px solid #bdc3c7;
+	font-size: 18px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+	color: #1ab188;
+}
+::-moz-placeholder { /* Firefox 19+ */
+	color: #1ab188;
+}
+:-ms-input-placeholder { /* IE 10+ */
+	color: #1ab188;
+}
+:-moz-placeholder { /* Firefox 18- */
+	color: #1ab188;
+}
+
+.searchField input:hover {
+	-webkit-transition: border-color 0.3s ease-in-out;
+	-moz-transition: border-color 0.3s ease-in-out;
+	transition: border-color 0.3s ease-in-out;
+	border-bottom: 1px solid #1ab188;
+}
+
+.searchForm button {
+	background: #1ab188;
+	color: #ffffff;
+	width: 30%;
+	max-width: 250px;
+	margin-top: 100px;
+	height: 40px;
+	font-size: 20px;
+	padding: 0px;
+	border: 0px;
+	color: rgba(19, 35, 47, 0.9);
+}
+
+/***** Modal *****/
+.modal {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	background-color: rgba(0,0,0, 0.5);
+	color: rgba(19, 35, 47, 0.9);
+}
+
+.modalTitle {
+	padding: 2%;
+	font-size: 20px;
+	background-color: red;
+	text-align: center;
+	color: #fff;
+}
+
+.errorMessage {
+	margin-top: 20%;
+	background-color: white;
+	color: #1ab188;
+	font-weight: bolder;
+}
+
+.close {
+	float: right;
+}
+
+
+/*********** MAP *************/
+.map {
+	display: block;
+	margin: 0 auto;
+	width: 100%;
+	height: 100%;
+	border: 1px solid blue;
+}
+
+.leaflet-container {
+	height: 600px;
+	width: 95%;
+  background-color: #333;
+}
+
+
+/***** Popup *****/
+.popupRow {
+	width: 280px;
+	height: 30px;
+	display: block;
+	text-align: center;
+	line-height: 30px;
+}
+
+.popupIcon {
+	float:left;
+	width: 15%;
+}
+
+.popupTitle {
+	text-align: left;
+	float:left;
+	width: 30%;
+}
+
+.popupValue {
+	float:left;
+	width: 55%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.popup span {
+	display: block;
+	border: 1px dotted blue;
+}
+
+.popup img{
+	float: left;
+	width: 20px;
+	height: 20px;
+	margin-top: 5px;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+	color: #3989FC;
+}
+
+/******* Control *******/
+.buttonBackground {
+	position: absolute;
+	border-radius: 10px;
+  width: 36px;
+  height: 36px;
+	background-color: white;
+	right: 10px;
+	top: 7px;
+	z-index: 1500000;
+	box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+}
+
+.polylineBackground {
+	top: 50px;
+}
+
+.markerIcon, 
+.polylineIcon {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	margin-top: 6px;
+}
+
+.markerIcon {
+	width: 25px;
+	height: 25px;
+}
+
+.polylineIcon {
+	margin-top: 11px;
+	right: 45px;
+	width: 30px;
+	height: 14px;
+}
+
+/******* Clusterer *******/
+.custom-cluster-waypoints {
+  background: url(assets/images/markerCluster.png);
+  background-size: 60px 60px;
+  background-repeat: no-repeat;
+  color: white;
+  width: 60px !important;
+  height: 60px !important;
+  line-height: 72px !important;
+  margin: 0 !important;
+  text-align: center;
+}
