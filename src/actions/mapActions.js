@@ -1,0 +1,17 @@
+import * as types from '../constants/actionTypes';
+import axios from "axios";
+import * as constants from "../constants/constants";
+
+export function loadTracksSuccess(waypoints) {
+  return {type: types.LOAD_TRACKS_SUCCESS, waypoints};
+}
+
+export function loadTracks() {
+  return (dispatch => {
+    return axios.get(constants.BACK_END_HOST).then(waypoints => {
+      dispatch(loadTracksSuccess(waypoints.data));
+    }).catch(error => {
+      throw(error);
+    });
+  })
+}

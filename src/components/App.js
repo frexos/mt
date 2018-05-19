@@ -3,7 +3,7 @@ import { NavLink, Route, Switch } from "react-router-dom";
 
 import AboutPage from "./AboutPage";
 import FuelSavingsPage from "./containers/FuelSavingsPage";
-import HomePage from "./HomePage";
+import MapContainer from "./containers/MapContainer";
 import NotFoundPage from "./NotFoundPage";
 import PropTypes from "prop-types";
 import React from "react";
@@ -14,6 +14,11 @@ import { hot } from "react-hot-loader";
 // component at the top-level.
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    // injectTapEventPlugin();
+  }
+
   render() {
     const activeStyle = { color: 'blue' };
     return (
@@ -26,7 +31,7 @@ class App extends React.Component {
           <NavLink to="/about" activeStyle={activeStyle}>About</NavLink>
         </div>
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          <Route exact path="/" component={MapContainer} />
           <Route path="/fuel-savings" component={FuelSavingsPage} />
           <Route path="/about" component={AboutPage} />
           <Route component={NotFoundPage} />
