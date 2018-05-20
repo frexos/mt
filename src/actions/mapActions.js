@@ -15,3 +15,23 @@ export function loadTracks() {
     });
   })
 }
+
+// RESIZE MARKERS BY ZOOM LEVEL
+export function resetMarkerSize(zoom) {
+  return {
+    type: types.RESET_MARKER_SIZE,
+    zoom,
+  };
+}
+
+// HANDLE INFO WINDOWS
+export const openInfoBox = (key) => {
+  return {
+    type: types.OPEN_INFO_BOX,
+    key
+  };
+};
+
+export const closeInfoBox = () => {
+  return {type: types.CLOSE_INFO_BOX};
+};
