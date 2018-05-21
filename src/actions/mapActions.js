@@ -35,3 +35,12 @@ export const openInfoBox = (key) => {
 export const closeInfoBox = () => {
   return {type: types.CLOSE_INFO_BOX};
 };
+
+// CALCULATE ANIMATION COORDINATES
+export const calculateAnimationCoordinates = (newCoordinates) => {
+  return {
+    type: types.CALCULATE_ANIMATION_COORDINATES,
+    newCoordinates,
+  };
+};
+

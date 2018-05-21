@@ -13,18 +13,7 @@ const MTMap = withScriptjs(withGoogleMap(props => {
     });
     return trackCoordinates;
   };
-  const getCoordinatesFromSpeed = (lat, lon, speed, heading, animationSpeed) => {
-    const getNewCoordinates = (lat, lon,  bearing, distance) => {
-      const R = 6371 // Earth Radius in Km
-      let latDist = Math.asin(Math.sin(Math.PI / 180 * lat) * Math.cos(distance / R) + Math.cos(Math.PI / 180 * lat) * Math.sin(distance / R) * Math.cos(Math.PI / 180 * bearing));
-      let lonDist = Math.PI / 180 * lon + Math.atan2(Math.sin( Math.PI / 180 * bearing) * Math.sin(distance / R) * Math.cos( Math.PI / 180 * lat ), Math.cos(distance / R) - Math.sin( Math.PI / 180 * lat) * Math.sin(latDist));
 
-      return [180 / Math.PI * latDist , 180 / Math.PI * lonDist];
-    };
-
-    setInterval(getNewCoordinates, 1000);
-    setTimeout( getCoordinatesFromSpeed, animationSpeed );
-  };
   let icon = {
     url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
     size: new google.maps.Size(8, 9),
