@@ -36,11 +36,30 @@ export const closeInfoBox = () => {
   return {type: types.CLOSE_INFO_BOX};
 };
 
-// CALCULATE ANIMATION COORDINATES
-export const calculateAnimationCoordinates = (newCoordinates) => {
+// ANIMATION ACTIONS
+let timer = null;
+export function animationStart() {
+  return (dispatch => {
+    timer = setInterval(() => {
+      dispatch(animationPropagate());
+      }, 1);
+    dispatch({type: types.ANIMATION_START});
+    dispatch(animationPropagate());
+  });
+}
+
+export const animationPropagate = () => {
   return {
-    type: types.CALCULATE_ANIMATION_COORDINATES,
-    newCoordinates,
+    type: types.ANIMATION_PROPAGATE,
   };
 };
 
+export const animationPause = () => {
+  clearInterval(timer);
+  return {type: types.ANIMATION_PAUSE};
+};
+
+export const animationReset = () => {
+  clearInterval(timer);
+  return {type: types.ANIMATION_RESET};
+};
