@@ -20,26 +20,21 @@ export class MapContainer extends React.Component {
 
   render() {
 
-    console.log("this.props");
-    console.log(this.props);
-    console.log(this.props.zoom);
+    // console.log("this.props");
+    // console.log(this.props);
 
     if (this.props.waypoints.length > 0) {
       const waypoints = this.props.waypoints.slice().reverse();
       const infoBoxProps = this.props.infoBoxProps;
-      const animationSpeed = 1000;
-
-      // FUNCTION TO UPDATE MARKER SIZE BY ZOOM
-      // const updateMarkerByZoom = (zoom) => {
-      //   console.log('markerSize');
-      //   console.log(7+zoom);
-      //   return 7+zoom
-      // };
+      // const animationSpeed = 1000;
 
       // FUNCTION TO DISPATCH ANIMATION START
-      const animationStart = () => this.props.animation.running
+      const animationStart = (speed) => this.props.animation.running
         ? null
-        : this.props.actions.animationStart();
+        : this.props.actions.animationStart(speed);
+
+      // FUNCTION TO RESUME ANIMATION START AFTER SPEED UPDATE
+      const animationResume = (speed) => this.props.actions.animationStart(speed);
 
       // FUNCTION TO DISPATCH ANIMATION PAUSE
       const animationPause = () => this.props.actions.animationPause();
@@ -47,7 +42,10 @@ export class MapContainer extends React.Component {
       // FUNCTION TO DISPATCH ANIMATION RESET
       const animationReset = () => this.props.actions.animationReset();
 
-      // FUNCTION TO UPDATE
+      // FUNCTION TO DISPATCH ANIMATION RESET
+      const updateSpeed = (speed) => this.props.actions.updateSpeed(speed);
+
+      // FUNCTION TO UPDATE ZOOM
       const updateMarker = (zoom) => {
         return this.props.actions.updateMarker(zoom)
       };
@@ -70,8 +68,12 @@ export class MapContainer extends React.Component {
           animationStart = {animationStart}
           animationPause = {animationPause}
           animationReset = {animationReset}
+          animationResume = {animationResume}
           updateMarker = {updateMarker}
+          updateSpeed = {updateSpeed}
+          running = {this.props.animation.running}
           zoom = {this.props.zoom}
+          speed = {this.props.animation.speed}
         />
       );
     } else {
@@ -90,7 +92,6 @@ MapContainer.propTypes = {
     closeInfoBox: PropTypes.func.isRequired,
   }),
   infoBoxProps: PropTypes.object.isRequired,
-  // animationCoordinates: PropTypes.object.isRequired,
 };
 
 

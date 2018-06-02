@@ -47,11 +47,11 @@ export const updateMarker = (zoom) => {
 
 // ANIMATION ACTIONS
 let timer = null;
-export function animationStart() {
+export function animationStart(speed) {
   return (dispatch => {
     timer = setInterval(() => {
       dispatch(animationPropagate());
-      }, 1);
+      }, speed);
     dispatch({type: types.ANIMATION_START});
     dispatch(animationPropagate());
   });
@@ -72,3 +72,11 @@ export const animationReset = () => {
   clearInterval(timer);
   return {type: types.ANIMATION_RESET};
 };
+
+export const updateSpeed = (speed) => {
+  return {
+    type: types.UPDATE_SPEED,
+    speed,
+  };
+};
+

@@ -22,19 +22,26 @@ const MTMap = withScriptjs(withGoogleMap(props => {
       return positionObj;
     };
 
+    const changeSpeed = (event) => {
+      props.updateSpeed(event.target.value);
+      if (props.running) {
+        props.animationPause();
+        props.animationResume(event.target.value);
+      }
+
+    };
+
     let icon = {
       url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
       size: new google.maps.Size(Math.round(Math.pow(1.5, props.zoom)), Math.round(Math.pow(1.6, props.zoom))),
       origin: new google.maps.Point(0, 0),
       anchor: new google.maps.Point(0, 8+Math.pow(1.3, props.zoom)),
     };
-    console.log('markerSize');
-    console.log(Math.pow(2,props.zoom));
 
     return (
       <div className="mt-map">
         <div className="mt-map__controls">
-          <a className="mt-map__button" href="#" onClick={props.animationStart}>
+          <a className="mt-map__button" href="#" onClick={()=>props.animationStart(props.speed)}>
             <img className="btn-icon" src={require("../images/play_icon.png")}/>
           </a>
           <a className="mt-map__button" href="#" onClick={props.animationPause}>
@@ -43,6 +50,11 @@ const MTMap = withScriptjs(withGoogleMap(props => {
           <a className="mt-map__button--refresh" href="#" onClick={props.animationReset}>
             <img className="btn-icon" src={require("../images/refresh_icon.png")}/>
           </a>
+          <select value={props.speed || 1} onChange={changeSpeed}>
+            <option value={1000}>Normal (x60)</option>
+            <option value={60}>Fast (x1000)</option>
+            <option value={1}>Superfast (x60000)</option>
+          </select>
         </div>
         <GoogleMap
           onZoomChanged={()=>props.onZoomChanged(props.updateMarker)}
@@ -103,10 +115,14 @@ export class MapPage extends React.Component {
     const animationStart = this.props.animationStart;
     const animationPause = this.props.animationPause;
     const animationReset = this.props.animationReset;
+    const animationResume = this.props.animationResume;
     const updateMarker = this.props.updateMarker;
+    const updateSpeed = this.props.updateSpeed;
     const coordsArray = this.props.coordsArray;
     const counter = this.props.counter;
     const zoom = this.props.zoom;
+    const speed = this.props.speed;
+    const running = this.props.running;
 
 
     return (
@@ -116,12 +132,16 @@ export class MapPage extends React.Component {
         infoBoxProps={infoBoxProps}
         animatedPosition={animatedPosition}
         zoom={zoom}
+        speed={speed}
+        running={running}
         onRequestOpen={onRequestOpen}
         closeInfoBox={closeInfoBox}
         animationStart={animationStart}
         animationPause={animationPause}
         animationReset={animationReset}
+        animationResume={animationResume}
         updateMarker={updateMarker}
+        updateSpeed={updateSpeed}
         coordsArray={coordsArray}
         counter={counter}
         loadingElement={<div style={{height: `100%`}}/>}

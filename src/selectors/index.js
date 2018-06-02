@@ -39,8 +39,6 @@ export const calculatePosition = createSelector(
           let newCoords = positionCalculator(waypointCoords.lat, waypointCoords.lon,  waypoints[i].HEADING, waypoints[i].SPEED, 60);
           animationCoords.push(newCoords);
           waypointCoords = {lat: newCoords.lat, lon: newCoords.lon};
-          // console.log(currentTimestamp);
-          // console.log(dateTimeToTimestamp(waypoints[i+1].TIMESTAMP));
           currentTimestamp+=60;
         }
       }
