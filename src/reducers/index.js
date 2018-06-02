@@ -1,15 +1,15 @@
 import {combineReducers} from 'redux';
-import fuelSavings from './fuelSavingsReducer';
 import waypoints from './mapReducer';
 import infoBoxProps from './infoBoxReducer';
+import zoomLevel from './zoomReducer';
 import animation from './animationReducer';
 import {routerReducer} from 'react-router-redux';
 
 const rootReducer = combineReducers({
   waypoints,
   infoBoxProps,
+  zoomLevel,
   animation,
-  fuelSavings,
   routing: routerReducer
 });
 

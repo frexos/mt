@@ -1,8 +1,5 @@
 /* eslint-disable import/no-named-as-default */
 import { NavLink, Route, Switch } from "react-router-dom";
-
-import AboutPage from "./AboutPage";
-import FuelSavingsPage from "./containers/FuelSavingsPage";
 import MapContainer from "./containers/MapContainer";
 import NotFoundPage from "./NotFoundPage";
 import PropTypes from "prop-types";
@@ -20,20 +17,10 @@ class App extends React.Component {
   }
 
   render() {
-    const activeStyle = { color: 'blue' };
     return (
       <div className="full-h">
-        <div>
-          <NavLink exact to="/" activeStyle={activeStyle}>Home</NavLink>
-          {' | '}
-          <NavLink to="/fuel-savings" activeStyle={activeStyle}>Demo App</NavLink>
-          {' | '}
-          <NavLink to="/about" activeStyle={activeStyle}>About</NavLink>
-        </div>
         <Switch>
           <Route exact path="/" component={MapContainer} />
-          <Route path="/fuel-savings" component={FuelSavingsPage} />
-          <Route path="/about" component={AboutPage} />
           <Route component={NotFoundPage} />
         </Switch>
       </div>

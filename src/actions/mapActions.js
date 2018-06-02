@@ -36,6 +36,15 @@ export const closeInfoBox = () => {
   return {type: types.CLOSE_INFO_BOX};
 };
 
+// UPDATE MARKER SIZE WHEN MAP IS ZOOMED
+export const updateMarker = (zoom) => {
+  return {
+    type: types.UPDATE_MARKER_SIZE,
+    zoom
+  };
+};
+
+
 // ANIMATION ACTIONS
 let timer = null;
 export function animationStart() {

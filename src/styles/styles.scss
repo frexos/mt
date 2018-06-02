@@ -33,7 +33,38 @@ h2 {
 	color: $vin-blue;
 }
 
-.savings { color: $vin-green; }
-.loss { color: $vin-red; }
-input.small { width: 46px; }
-td.fuel-savings-label { width: 175px; }
+.btn-icon {
+  width: 100%;
+}
+
+/* MAP SECTION */
+
+.mt-map {
+  &__controls {
+    background-color: rgba(255, 255, 255, .8);
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 3px;
+    position: absolute;
+    bottom: 50px;
+    left: 100px;
+    box-shadow: 0 0 8px 1px rgba(66,66,66,1);
+  }
+
+  &__button {
+    display: inline-block;
+    width: 50px;
+
+    &--refresh {
+      display: inline-block;
+      padding: 11px 20px 0 10px;
+
+      .btn-icon {
+        width: 30px
+      }
+    }
+  }
+}
+
+/* END MAP SECTION */

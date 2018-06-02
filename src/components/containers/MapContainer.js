@@ -19,17 +19,38 @@ export class MapContainer extends React.Component {
   }
 
   render() {
-    // console.log('waypoints');
-    // console.log(this.props);
+
+    console.log("this.props");
+    console.log(this.props);
+    console.log(this.props.zoom);
 
     if (this.props.waypoints.length > 0) {
       const waypoints = this.props.waypoints.slice().reverse();
       const infoBoxProps = this.props.infoBoxProps;
       const animationSpeed = 1000;
+
+      // FUNCTION TO UPDATE MARKER SIZE BY ZOOM
+      // const updateMarkerByZoom = (zoom) => {
+      //   console.log('markerSize');
+      //   console.log(7+zoom);
+      //   return 7+zoom
+      // };
+
       // FUNCTION TO DISPATCH ANIMATION START
-      const animationStart = () => this.props.actions.animationStart();
+      const animationStart = () => this.props.animation.running
+        ? null
+        : this.props.actions.animationStart();
+
       // FUNCTION TO DISPATCH ANIMATION PAUSE
       const animationPause = () => this.props.actions.animationPause();
+
+      // FUNCTION TO DISPATCH ANIMATION RESET
+      const animationReset = () => this.props.actions.animationReset();
+
+      // FUNCTION TO UPDATE
+      const updateMarker = (zoom) => {
+        return this.props.actions.updateMarker(zoom)
+      };
 
       // FUNCTION THAT RETURNS CHANGING ANIMATION COORDINATES
       const getAnimatedPosition = (coordsArray, counter) => {
@@ -48,6 +69,9 @@ export class MapContainer extends React.Component {
           closeInfoBox = {this.props.actions.closeInfoBox}
           animationStart = {animationStart}
           animationPause = {animationPause}
+          animationReset = {animationReset}
+          updateMarker = {updateMarker}
+          zoom = {this.props.zoom}
         />
       );
     } else {
@@ -76,6 +100,7 @@ function mapStateToProps(state) {
   return {
     waypoints: state.waypoints,
     infoBoxProps: state.infoBoxProps,
+    zoom: state.zoomLevel.zoom,
     animation: state.animation,
     animationCoords: state.waypoints.length> 0? calculatePosition(state) : null,
   };
