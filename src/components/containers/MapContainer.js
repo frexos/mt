@@ -20,13 +20,9 @@ export class MapContainer extends React.Component {
 
   render() {
 
-    // console.log("this.props");
-    // console.log(this.props);
-
     if (this.props.waypoints.length > 0) {
       const waypoints = this.props.waypoints.slice().reverse();
       const infoBoxProps = this.props.infoBoxProps;
-      // const animationSpeed = 1000;
 
       // FUNCTION TO DISPATCH ANIMATION START
       const animationStart = (speed) => this.props.animation.running
@@ -47,7 +43,12 @@ export class MapContainer extends React.Component {
 
       // FUNCTION TO UPDATE ZOOM
       const updateMarker = (zoom) => {
-        return this.props.actions.updateMarker(zoom)
+        return this.props.actions.updateMarker(zoom);
+      };
+
+      // FUNCTION TO UPDATE ANIMATION POSITION BY SLIDER BAR
+      const animationProgress = (counter) => {
+        return this.props.actions.animationProgress(counter);
       };
 
       // FUNCTION THAT RETURNS CHANGING ANIMATION COORDINATES
@@ -69,6 +70,7 @@ export class MapContainer extends React.Component {
           animationPause = {animationPause}
           animationReset = {animationReset}
           animationResume = {animationResume}
+          animationProgress = {animationProgress}
           updateMarker = {updateMarker}
           updateSpeed = {updateSpeed}
           running = {this.props.animation.running}

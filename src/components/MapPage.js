@@ -1,46 +1,55 @@
 import React from 'react';
 import {withScriptjs, withGoogleMap, GoogleMap, Marker, Polyline} from 'react-google-maps';
 import {InfoBox} from 'react-google-maps/lib/components/addons/InfoBox';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
+import 'rc-tooltip/assets/bootstrap.css';
 import '../styles/about-page.css';
 
 // Since this component is simple and static, there's no parent container for it.
 
 const MTMap = withScriptjs(withGoogleMap(props => {
 
-    const getTrackCoordinates = () => {
-      let trackCoordinates = [];
-      props.waypoints.forEach(i => {
-        trackCoordinates.push({lat: parseFloat(i.LAT), lng: parseFloat(i.LON)});
-      });
-      return trackCoordinates;
-    };
+  const getTrackCoordinates = () => {
+    let trackCoordinates = [];
+    props.waypoints.forEach(i => {
+      trackCoordinates.push({lat: parseFloat(i.LAT), lng: parseFloat(i.LON)});
+    });
+    return trackCoordinates;
+  };
 
+  const animationPosition = () => {
+    let positionObj = props.animatedPosition(props.coordsArray, props.counter);
+    return positionObj;
+  };
 
+  const changeSpeed = (event) => {
+    props.updateSpeed(event.target.value);
+    if (props.running) {
+      props.animationPause();
+      props.animationResume(event.target.value);
+    }
+  };
 
-    const animationPosition = () => {
-      let positionObj = props.animatedPosition(props.coordsArray, props.counter);
-      return positionObj;
-    };
+  const markerSize = Math.round(Math.pow(1.5, props.zoom)) > 50 ? 50 : Math.round(Math.pow(1.5, props.zoom));
 
-    const changeSpeed = (event) => {
-      props.updateSpeed(event.target.value);
-      if (props.running) {
-        props.animationPause();
-        props.animationResume(event.target.value);
-      }
+  let icon = {
+    url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+    scaledSize: new google.maps.Size(markerSize, markerSize),
+    anchor: new google.maps.Point(0, markerSize),
+  };
 
-    };
+  //   SLIDER
+  const progressPoint = Math.ceil(props.counter*100/(props.coordsArray.length-2));
 
-    let icon = {
-      url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-      size: new google.maps.Size(Math.round(Math.pow(1.5, props.zoom)), Math.round(Math.pow(1.6, props.zoom))),
-      origin: new google.maps.Point(0, 0),
-      anchor: new google.maps.Point(0, 8+Math.pow(1.3, props.zoom)),
-    };
+  const handleSlider = (value) => {
+    props.animationProgress(Math.ceil(value*(props.coordsArray.length-2)/100));
+  };
 
-    return (
-      <div className="mt-map">
-        <div className="mt-map__controls">
+  return (
+    <div className="mt-map">
+      <div className="mt-map__controls flex-col">
+        <div className="flex-row">
           <a className="mt-map__button" href="#" onClick={()=>props.animationStart(props.speed)}>
             <img className="btn-icon" src={require("../images/play_icon.png")}/>
           </a>
@@ -50,47 +59,53 @@ const MTMap = withScriptjs(withGoogleMap(props => {
           <a className="mt-map__button--refresh" href="#" onClick={props.animationReset}>
             <img className="btn-icon" src={require("../images/refresh_icon.png")}/>
           </a>
-          <select value={props.speed || 1} onChange={changeSpeed}>
+          <select className="mt-map__select" value={props.speed || 1} onChange={changeSpeed}>
             <option value={1000}>Normal (x60)</option>
             <option value={60}>Fast (x1000)</option>
             <option value={1}>Superfast (x60000)</option>
           </select>
         </div>
-        <GoogleMap
-          onZoomChanged={()=>props.onZoomChanged(props.updateMarker)}
-          ref={props.onMapMounted}
-          defaultZoom={7}
-          defaultCenter={{lat: parseFloat(props.waypoints[0].LAT), lng: parseFloat(props.waypoints[0].LON)}}
-        >
-          {props.waypoints.map((waypointItem, key) => (
-            <Marker
-              position={{lat: parseFloat(waypointItem.LAT), lng: parseFloat(waypointItem.LON)}}
-              key={key}
-              icon={icon}
-              onMouseOver={() => {
-                props.onRequestOpen(key)
-              }}
-              onMouseOut={props.closeInfoBox}
-            >
-              {(props.infoBoxProps.isOpen && props.infoBoxProps.key === key) && <InfoBox>
-                <div style={{backgroundColor: "#FFFFFF", padding: "5px 10px"}}>
-                  <p>{'Vessel Speed: ' + waypointItem.SPEED}</p>
-                  <p>{'Vessel Course: ' + waypointItem.COURSE}</p>
-                  <p>{'Timestamp: ' + waypointItem.TIMESTAMP}</p>
-                </div>
-              </InfoBox>}
-            </Marker>
-          ))}
-          <Marker
-            position={{lat: parseFloat(animationPosition().lat), lng: parseFloat(animationPosition().lon)}}/>
-          <Polyline
-            path={getTrackCoordinates()}
-          />
-        </GoogleMap>
+        <div className="flex-row">
+          <Slider min={0} max={100} value={progressPoint} onChange={handleSlider} />
+        </div>
+        <div className="flex-row">
+          <p>{props.counter > -1 ? props.coordsArray[props.counter].timePoint: ''}</p>
+        </div>
       </div>
-    )
-  }
-));
+      <GoogleMap
+        onZoomChanged={()=>props.onZoomChanged(props.updateMarker)}
+        ref={props.onMapMounted}
+        defaultZoom={7}
+        defaultCenter={{lat: parseFloat(props.waypoints[0].LAT), lng: parseFloat(props.waypoints[0].LON)}}
+      >
+        {props.waypoints.map((waypointItem, key) => (
+          <Marker
+            position={{lat: parseFloat(waypointItem.LAT), lng: parseFloat(waypointItem.LON)}}
+            key={key}
+            icon={icon}
+            onMouseOver={() => {
+              props.onRequestOpen(key)
+            }}
+            onMouseOut={props.closeInfoBox}
+          >
+            {(props.infoBoxProps.isOpen && props.infoBoxProps.key === key) && <InfoBox>
+              <div style={{backgroundColor: "#FFFFFF", padding: "5px 10px"}}>
+                <p>{'Vessel Speed: ' + waypointItem.SPEED}</p>
+                <p>{'Vessel Course: ' + waypointItem.COURSE}</p>
+                <p>{'Timestamp: ' + waypointItem.TIMESTAMP}</p>
+              </div>
+            </InfoBox>}
+          </Marker>
+        ))}
+        <Marker
+          position={{lat: parseFloat(animationPosition().lat), lng: parseFloat(animationPosition().lon)}}/>
+        <Polyline
+          path={getTrackCoordinates()}
+        />
+      </GoogleMap>
+    </div>
+  )
+}));
 
 export class MapPage extends React.Component {
   constructor(props) {
@@ -116,6 +131,7 @@ export class MapPage extends React.Component {
     const animationPause = this.props.animationPause;
     const animationReset = this.props.animationReset;
     const animationResume = this.props.animationResume;
+    const animationProgress = this.props.animationProgress;
     const updateMarker = this.props.updateMarker;
     const updateSpeed = this.props.updateSpeed;
     const coordsArray = this.props.coordsArray;
@@ -140,6 +156,7 @@ export class MapPage extends React.Component {
         animationPause={animationPause}
         animationReset={animationReset}
         animationResume={animationResume}
+        animationProgress={animationProgress}
         updateMarker={updateMarker}
         updateSpeed={updateSpeed}
         coordsArray={coordsArray}

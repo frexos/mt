@@ -43,6 +43,13 @@ const animationReducer = (state = initialState, action) => {
         speed: action.speed,
       };
 
+    case types.ANIMATION_PROGRESS:
+      return {
+        counter: action.counter,
+        running: false,
+        speed: state.speed,
+      };
+
     default:
       return state;
   }

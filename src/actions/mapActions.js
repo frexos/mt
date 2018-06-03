@@ -80,3 +80,11 @@ export const updateSpeed = (speed) => {
   };
 };
 
+export const animationProgress = (counter) => {
+  return {
+    type: types.ANIMATION_PROGRESS,
+    counter,
+  };
+};
+
+

@@ -37,13 +37,22 @@ h2 {
   width: 100%;
 }
 
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 /* MAP SECTION */
 
 .mt-map {
   &__controls {
     background-color: rgba(255, 255, 255, .8);
-    display: flex;
-    justify-content: space-between;
     padding: 20px;
     border-radius: 3px;
     position: absolute;
@@ -58,12 +67,16 @@ h2 {
 
     &--refresh {
       display: inline-block;
-      padding: 11px 20px 0 10px;
+      padding: 0 20px 0 10px;
 
       .btn-icon {
         width: 30px
       }
     }
+  }
+
+  &__select {
+    height: 24px;
   }
 }
 
