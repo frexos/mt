@@ -6,13 +6,15 @@ For development please follow the steps bellow
 
 1. Make sure you use version of node > 6 (I use 8.9.4 on linux and 8.1.2 on windows 10)
 
-2. In order to download dependencies
+2. cd to directory mt_assignment/
+
+3. In order to download dependencies
 npm install
 
-3. In order to run the project in development mode in local server
+4. In order to run the project in development mode in local server
 npm start -s
 
-4. In order to make a production build
+5. In order to make a production build
 npm run build
 
 ISSUES FOR CONSIDERATION
