@@ -1,5 +1,5 @@
 /* eslint-disable import/no-named-as-default */
-import { NavLink, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import MapContainer from "./containers/MapContainer";
 import NotFoundPage from "./NotFoundPage";
 import PropTypes from "prop-types";

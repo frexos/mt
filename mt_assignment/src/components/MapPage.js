@@ -1,4 +1,6 @@
+/* global google */
 import React from 'react';
+import PropTypes from 'prop-types';
 import {withScriptjs, withGoogleMap, GoogleMap, Marker, Polyline} from 'react-google-maps';
 import {InfoBox} from 'react-google-maps/lib/components/addons/InfoBox';
 import Slider from 'rc-slider';
@@ -143,7 +145,8 @@ export class MapPage extends React.Component {
 
     return (
       <MTMap
-        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places"
+        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFSA04UQVh2e56stH7y86PZy3i11fEzc&v=3.exp&libraries=geometry,drawing,places"
+        // googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places"
         waypoints={waypoints}
         infoBoxProps={infoBoxProps}
         animatedPosition={animatedPosition}
@@ -171,5 +174,27 @@ export class MapPage extends React.Component {
 
   }
 }
+
+MapPage.propTypes = {
+  waypoints: PropTypes.array.isRequired,
+  openInfoBox: PropTypes.func.isRequired,
+  onRequestOpen: PropTypes.func.isRequired,
+  animatedPosition: PropTypes.func.isRequired,
+  closeInfoBox: PropTypes.func.isRequired,
+  animationStart: PropTypes.func.isRequired,
+  animationPause: PropTypes.func.isRequired,
+  animationReset: PropTypes.func.isRequired,
+  animationResume: PropTypes.func.isRequired,
+  updateSpeed: PropTypes.func.isRequired,
+  updateMarker: PropTypes.func.isRequired,
+  animationProgress: PropTypes.func.isRequired,
+  running: PropTypes.bool.isRequired,
+  counter: PropTypes.number.isRequired,
+  speed: PropTypes.number.isRequired,
+  animationCoords: PropTypes.array,
+  coordsArray: PropTypes.array,
+  infoBoxProps: PropTypes.object.isRequired,
+  zoom: PropTypes.number.isRequired,
+};
 
 export default MapPage;

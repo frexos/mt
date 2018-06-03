@@ -183,6 +183,8 @@
       "jquery": true,
       "jest": true
     },
-    "globals": {}
+    "globals": {
+      "google": false
+    }
   }
 }

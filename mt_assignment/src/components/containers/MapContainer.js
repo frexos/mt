@@ -92,8 +92,21 @@ MapContainer.propTypes = {
   actions: PropTypes.shape({
     openInfoBox: PropTypes.func.isRequired,
     closeInfoBox: PropTypes.func.isRequired,
+    animationStart: PropTypes.func.isRequired,
+    animationPause: PropTypes.func.isRequired,
+    animationReset: PropTypes.func.isRequired,
+    updateSpeed: PropTypes.func.isRequired,
+    updateMarker: PropTypes.func.isRequired,
+    animationProgress: PropTypes.func.isRequired,
   }),
+  animation: PropTypes.shape({
+    running: PropTypes.bool.isRequired,
+    counter: PropTypes.number.isRequired,
+    speed: PropTypes.number.isRequired,
+  }),
+  animationCoords: PropTypes.array,
   infoBoxProps: PropTypes.object.isRequired,
+  zoom: PropTypes.number.isRequired,
 };
 
 
